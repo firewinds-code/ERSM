@@ -26,20 +26,22 @@ class ReportController extends Controller
             $array = explode("@", $request->dateRangehid);
             $startDate = $array[0];
             $endDate = $array[1];
+            $start_Date = date('Y-m-d', strtotime($startDate));
+            $end_Date = date('Y-m-d', strtotime($endDate));
             if (Auth::user()->usertype == '2') {
                 $data = DB::table('client_data')
                     ->join('agentinputs', 'client_data.id', '=', 'agentinputs.dataID')
                     ->join('users', 'client_data.agent_id', '=', 'users.empID')
                     ->select("*")
                     ->where('client_data.agent_id', $User)
-                    ->whereRaw('DATE(agentinputs.created_at) BETWEEN ? AND ?', [date('Y-m-d', strtotime($startDate)), date('Y-m-d', strtotime($endDate))])
+                    ->whereBetween(DB::raw('DATE(agentinputs.created_at)'), [$start_Date, $end_Date])
                     ->get();
             } else {
                 $data = DB::table('client_data')
                     ->join('agentinputs', 'client_data.id', '=', 'agentinputs.dataID')
                     ->join('users', 'client_data.agent_id', '=', 'users.empID')
                     ->select("*")
-                    ->whereRaw('DATE(agentinputs.created_at) BETWEEN ? AND ?', [date('Y-m-d', strtotime($startDate)), date('Y-m-d', strtotime($endDate))])
+                    ->whereBetween(DB::raw('DATE(agentinputs.created_at)'), [$start_Date, $end_Date])
                     ->get();
             }
             return view('report.report', compact('data'));
