@@ -34,13 +34,14 @@
             @csrf
             <aside class="main-sidebar sidebar-dark-info  elevation-4">
                 <div class="sidebar">
-                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                            <img src="{{ asset('images/logo.jpg') }}" class="img-circle elevation-2" alt="User Image">
-                        </div>
-                        <div class="info">
-                            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-                        </div>
+                    <div class="user-panel d-flex" style="background-color: white;height: 3rem; width: 20.2rem; margin-left: -0.5rem; ">
+                        <!-- For Small Logo -->
+                        <img src="https://hiring.cogentlab.com/ed/public/alldocs/images/logo_1.png" alt="AdminLTE Logo"
+                            class="brand-image-xs logo-xs mt-0.1"
+                            style="height: 2rem;width: 2.6rem;margin-left: -0.4rem;">
+                        <!-- For Big Logo -->
+                        <img src="https://ems.cogentlab.com/erpm/Style/images/Cogent.png" alt="AdminLTE Logo"
+                            class="brand-image-xl logo-xl" style="height: 2rem;width: 9.5rem;margin-left: 2rem">
                     </div>
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
